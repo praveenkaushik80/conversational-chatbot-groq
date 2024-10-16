@@ -56,7 +56,7 @@ def main():
     else:
         system_prompt = st.sidebar.text_input("System prompt:")
         if system_prompt:
-            continue
+            pass
         else:
             prompt = ChatPromptTemplate.from_template(
             """
