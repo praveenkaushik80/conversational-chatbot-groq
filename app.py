@@ -58,7 +58,7 @@ def main():
         # if system_prompt:
         #     pass
         # else:
-        system_prompt = ChatPromptTemplate.from_template(
+        prompt = ChatPromptTemplate.from_template(
         """
         Answer the questions based on the provided context only.
         Please provide the most accurate response based on the question.
@@ -98,7 +98,8 @@ def main():
             prompt = ChatPromptTemplate.from_messages(
                 [
                     SystemMessage(
-                        content=system_prompt
+                        # content=system_prompt
+                        content=prompt
                     ),  # This is the persistent system prompt that is always included at the start of the chat.
         
                     MessagesPlaceholder(
