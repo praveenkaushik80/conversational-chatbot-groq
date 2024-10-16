@@ -54,20 +54,27 @@ def main():
     if not groq_api_key:
         st.info("Please add your Groq API key to continue.", icon="🗝️")
     else:
-        # system_prompt = st.sidebar.text_input("System prompt:")
-        # if system_prompt:
-        #     pass
-        # else:
-        prompt = ChatPromptTemplate.from_template(
-        """
-        Answer the questions based on the provided context only.
-        Please provide the most accurate response based on the question.
-        <context>
-        {context}
-        <context>
-        Questions: {input}
-        """
-        )
+        system_prompt = st.sidebar.text_input("System prompt:")
+        if system_prompt:
+            pass
+        else:
+            prompt = ChatPromptTemplate.from_template(
+            """
+            Answer the questions based on the provided context only.
+            Please provide the most accurate response based on the question.
+            <context>
+            {context}
+            <context>
+            Questions: {input}
+            """,
+            MessagesPlaceholder(
+                variable_name="chat_history"
+            ),  # This placeholder will be replaced by the actual chat history during the conversation. It helps in maintaining context.
+
+            HumanMessagePromptTemplate.from_template(
+                "{human_input}"
+            ),  # This template is where the user's current input will be injected into the prompt.
+            )
         conversational_memory_length = st.sidebar.slider('Conversational memory length:', 1, 10, value = 5)
     
         memory = ConversationBufferWindowMemory(k=conversational_memory_length, memory_key="chat_history", return_messages=True)
@@ -98,8 +105,7 @@ def main():
             prompt = ChatPromptTemplate.from_messages(
                 [
                     SystemMessage(
-                        # content=system_prompt
-                        content=prompt
+                        content=system_prompt
                     ),  # This is the persistent system prompt that is always included at the start of the chat.
         
                     MessagesPlaceholder(
