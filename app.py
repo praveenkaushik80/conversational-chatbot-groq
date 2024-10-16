@@ -70,10 +70,6 @@ def main():
             MessagesPlaceholder(
                 variable_name="chat_history"
             ),  # This placeholder will be replaced by the actual chat history during the conversation. It helps in maintaining context.
-
-            HumanMessagePromptTemplate.from_template(
-                "{human_input}"
-            ),  # This template is where the user's current input will be injected into the prompt.
             )
         conversational_memory_length = st.sidebar.slider('Conversational memory length:', 1, 10, value = 5)
     
