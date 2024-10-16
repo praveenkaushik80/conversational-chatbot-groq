@@ -66,10 +66,7 @@ def main():
             {context}
             <context>
             Questions: {input}
-            """,
-            MessagesPlaceholder(
-                variable_name="chat_history"
-            ),  # This placeholder will be replaced by the actual chat history during the conversation. It helps in maintaining context.
+            """
             )
         conversational_memory_length = st.sidebar.slider('Conversational memory length:', 1, 10, value = 5)
     
