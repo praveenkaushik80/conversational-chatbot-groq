@@ -58,7 +58,7 @@ def main():
         # if system_prompt:
         #     pass
         # else:
-        prompt = ChatPromptTemplate.from_template(
+        system_prompt = ChatPromptTemplate.from_template(
         """
         Answer the questions based on the provided context only.
         Please provide the most accurate response based on the question.
