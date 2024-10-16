@@ -55,6 +55,19 @@ def main():
         st.info("Please add your Groq API key to continue.", icon="🗝️")
     else:
         system_prompt = st.sidebar.text_input("System prompt:")
+        if system_prompt:
+            continue
+        else:
+            prompt = ChatPromptTemplate.from_template(
+            """
+            Answer the questions based on the provided context only.
+            Please provide the most accurate response based on the question.
+            <context>
+            {context}
+            <context>
+            Questions: {input}
+            """
+            )
         conversational_memory_length = st.sidebar.slider('Conversational memory length:', 1, 10, value = 5)
     
         memory = ConversationBufferWindowMemory(k=conversational_memory_length, memory_key="chat_history", return_messages=True)
