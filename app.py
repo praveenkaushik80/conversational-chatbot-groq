@@ -21,7 +21,7 @@ def main():
     """
     
     # Get Groq API key
-    groq_api_key = os.environ['GROQ_API_KEY']
+    # groq_api_key = os.environ['GROQ_API_KEY']
 
     # Display the Groq logo
     spacer, col = st.columns([5, 1])  
@@ -81,6 +81,7 @@ def main():
             )
     
     # If the user has asked a question,
+    user_question = st.text_input("")
     if user_question:
     
         # Construct a chat prompt template using various components
